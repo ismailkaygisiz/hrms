@@ -25,7 +25,7 @@ public class CandicatesController {
     }
 
     @PostMapping("add")
-    public Result add(@RequestBody Candicate candicate){
+    public Result add(@RequestBody Candicate candicate) throws Exception {
         return candicateService.add(candicate);
     }
 }

@@ -11,5 +11,5 @@ public interface CandicateService {
 
     DataResult<Candicate> getByIdentityNumber(String identityNumber);
 
-    Result add(Candicate candicate);
+    Result add(Candicate candicate) throws Exception;
 }

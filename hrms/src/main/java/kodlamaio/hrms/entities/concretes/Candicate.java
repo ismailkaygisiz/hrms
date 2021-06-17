@@ -9,7 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-import java.sql.Date;
+
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -28,5 +29,5 @@ public class Candicate extends User {
     private String identityNumber;
 
     @Column(name = "date_of_birth")
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
 }
