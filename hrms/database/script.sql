@@ -56,6 +56,28 @@ CREATE TABLE public.job_titles
     PRIMARY KEY (id)
 );
 
+CREATE TABLE public.job_postings
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    job_description character varying NOT NULL,
+    min_salary integer,
+    max_salary integer,
+    open_positions integer NOT NULL,
+    "application_deadline;" date NOT NULL,
+    is_active boolean NOT NULL,
+    city_id integer NOT NULL,
+    employer_id integer NOT NULL,
+    job_title_id integer NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE public.cities
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    name character varying,
+    PRIMARY KEY (id)
+);
+
 ALTER TABLE public.employees
     ADD FOREIGN KEY (user_id)
     REFERENCES public.users (id)
@@ -77,6 +99,24 @@ ALTER TABLE public.candicates
 ALTER TABLE public.verifications
     ADD FOREIGN KEY (user_id)
     REFERENCES public.users (id)
+    NOT VALID;
+
+
+ALTER TABLE public.job_postings
+    ADD FOREIGN KEY (job_title_id)
+    REFERENCES public.job_titles (id)
+    NOT VALID;
+
+
+ALTER TABLE public.job_postings
+    ADD FOREIGN KEY (employer_id)
+    REFERENCES public.employers (user_id)
+    NOT VALID;
+
+
+ALTER TABLE public.job_postings
+    ADD FOREIGN KEY (city_id)
+    REFERENCES public.cities (id)
     NOT VALID;
 
 END;
