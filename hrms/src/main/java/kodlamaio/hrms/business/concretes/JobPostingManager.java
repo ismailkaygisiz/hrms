@@ -10,6 +10,7 @@ import kodlamaio.hrms.entities.concretes.JobPosting;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -23,6 +24,7 @@ public class JobPostingManager implements JobPostingService {
 
     @Override
     public Result add(JobPosting jobPosting) {
+        jobPosting.setCreatedDate(LocalDate.now());
         jobPostingDao.save(jobPosting);
         return new SuccessResult();
     }
@@ -33,12 +35,17 @@ public class JobPostingManager implements JobPostingService {
     }
 
     @Override
-    public DataResult<List<JobPosting>> getByEmployerId(int employerId) {
-        return new SuccessDataResult<List<JobPosting>>(jobPostingDao.getByEmployer_Id(employerId));
+    public DataResult<List<JobPosting>> getByEmployerId(int employerId, boolean isActive) {
+        return new SuccessDataResult<List<JobPosting>>(jobPostingDao.getByEmployer_IdAndIsActive(employerId, isActive));
     }
 
     @Override
     public DataResult<List<JobPosting>> getByActive(boolean isActive) {
         return new SuccessDataResult<List<JobPosting>>(jobPostingDao.getByIsActive(isActive));
+    }
+
+    @Override
+    public DataResult<List<JobPosting>> getByIsActiveTrueOrderByCreatedDate() {
+        return new SuccessDataResult<List<JobPosting>>(jobPostingDao.getByIsActiveTrueOrderByCreatedDateDesc());
     }
 }

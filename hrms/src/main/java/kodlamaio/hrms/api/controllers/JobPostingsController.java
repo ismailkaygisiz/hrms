@@ -26,12 +26,17 @@ public class JobPostingsController {
 
     @GetMapping("getbyemployerid")
     public DataResult<List<JobPosting>> getByEmployerId(@RequestParam int employerId){
-        return jobPostingService.getByEmployerId(employerId);
+        return jobPostingService.getByEmployerId(employerId, true);
     }
 
     @GetMapping("getbyactive")
     public DataResult<List<JobPosting>> getByActive(@RequestParam boolean isActive){
         return jobPostingService.getByActive(isActive);
+    }
+
+    @GetMapping("getbyisactivetrueorderbycreateddate")
+    public DataResult<List<JobPosting>> getByIsActiveTrueOrderByCreatedDate(){
+        return jobPostingService.getByIsActiveTrueOrderByCreatedDate();
     }
 
     @PostMapping("add")

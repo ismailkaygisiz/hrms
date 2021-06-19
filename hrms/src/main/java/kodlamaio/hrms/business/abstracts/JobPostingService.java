@@ -11,9 +11,10 @@ public interface JobPostingService {
 
     DataResult<List<JobPosting>> getAll();
 
-    DataResult<List<JobPosting>> getByEmployerId(int employerId);
+    DataResult<List<JobPosting>> getByEmployerId(int employerId, boolean isActive);
 
     DataResult<List<JobPosting>> getByActive(boolean isActive);
 
+    DataResult<List<JobPosting>> getByIsActiveTrueOrderByCreatedDate();
 
 }
