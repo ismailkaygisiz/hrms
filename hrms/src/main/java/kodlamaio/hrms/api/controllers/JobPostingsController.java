@@ -20,27 +20,27 @@ public class JobPostingsController {
     }
 
     @GetMapping("getall")
-    public DataResult<List<JobPosting>> getAll(){
+    public DataResult<List<JobPosting>> getAll() {
         return jobPostingService.getAll();
     }
 
     @GetMapping("getbyemployerid")
-    public DataResult<List<JobPosting>> getByEmployerId(@RequestParam int employerId){
+    public DataResult<List<JobPosting>> getByEmployerId(@RequestParam int employerId) {
         return jobPostingService.getByEmployerId(employerId, true);
     }
 
     @GetMapping("getbyactive")
-    public DataResult<List<JobPosting>> getByActive(@RequestParam boolean isActive){
+    public DataResult<List<JobPosting>> getByActive(@RequestParam boolean isActive) {
         return jobPostingService.getByActive(isActive);
     }
 
     @GetMapping("getbyisactivetrueorderbycreateddate")
-    public DataResult<List<JobPosting>> getByIsActiveTrueOrderByCreatedDate(){
+    public DataResult<List<JobPosting>> getByIsActiveTrueOrderByCreatedDate() {
         return jobPostingService.getByIsActiveTrueOrderByCreatedDate();
     }
 
     @PostMapping("add")
-    public Result add(@RequestBody JobPosting jobPosting){
+    public Result add(@RequestBody JobPosting jobPosting) {
         return jobPostingService.add(jobPosting);
     }
 }
